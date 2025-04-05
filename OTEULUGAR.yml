@@ -3,7 +3,7 @@ info:
   title: API - OTEULUGAR - Programação III 
   description: API realizada em Programação III para o consultório de psicologia OTEULUGAR
   contact:
-    email: lobboo.2002@gmail.com
+    email: paulada
   version: 1.0.0
 servers:
   - url: http://localhost:5000/api/v1
