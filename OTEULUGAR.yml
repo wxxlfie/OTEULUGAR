@@ -1,0 +1,1033 @@
+openapi: 3.0.3
+info:
+  title: API - OTEULUGAR - Programação III 
+  description: API realizada em Programação III para o consultório de psicologia OTEULUGAR
+  contact:
+    email: geral@ismt.pt
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api/v1
+    description: Servidor local
+tags:
+  - name: utilizador
+    description: Dados referentes aos utilizadores
+  - name: psicologo
+    description: Dados referentes os psicólogos
+  - name: marcacao
+    description: Dados referentes às marcações realizadas pelos utilizadores
+  - name: agenda
+    description: Dados referentes à agenda dos psicólogos
+  - name: cliente
+    description: Dados referentes aos clientes dos psicólogos
+paths:
+  /utilizador:
+    post:
+      tags:
+        - utilizador
+      summary: Adicionar um utilizador
+      description: Adiciona um utilizador no sistema
+      operationId: addUtilizador
+      requestBody:
+        description: Criar um utilizador
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: Input inválido
+        '201':
+          description: Criado com sucesso
+    get:
+      tags: 
+        - utilizador
+      summary: Obtém dados de utilizadores
+      description: Obtém dados de todos os utilizadores
+      operationId: getUtilizadores
+      requestBody:
+        description: Obtém dados de utilizadores
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: Input inválido
+        '500':
+          description: Erro ao executar o pedido
+  /utilizador/{utilizadorId}:
+    put:
+      tags:
+        - utilizador
+      summary: Fazer update de um utilizador
+      description: Fazer update dos dados de um utilizador por ID
+      operationId: updateUtilizador
+      requestBody:
+        description: Fazer update de um utilizador
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Utilizador'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: ID inválido
+        '404':
+          description: Utilizador não encontrado
+        '422':
+          description: Exceção de validação
+    get:
+      tags:
+        - utilizador
+      summary: Obter utilizador por ID
+      description: Obtém apenas um utilizador por ID
+      operationId: getUtilizadorById
+      parameters:
+        - name: utilizadorId
+          in: path
+          description: ID do utilizador a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilizador'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Utilizador'
+        '400':
+          description: ID inválido
+        '404':
+          description: Utilizador não encontrado
+    delete:
+      tags:
+        - utilizador
+      summary: Elimina um utilizador
+      description: Elimina um utilizador
+      operationId: deleteUtilizador
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: utilizadorId
+          in: path
+          description: ID do utilizador a eliminar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Valor de utilizador inválido
+  /psicologo:
+    post:
+      tags:
+        - psicologo
+      summary: Adicionar um psicólogo
+      description: Adiciona um psicólogo no sistema
+      operationId: addPsicologo
+      requestBody:
+        description: Criar um psicólogo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Psicologo'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Psicologo'
+        '400':
+          description: Input inválido
+        '201':
+          description: Criado com sucesso
+    get:
+      tags: 
+        - psicologo
+      summary: Obtém dados de psicólogos
+      description: Obtém dados de todos os psicólogos
+      operationId: getPsicologos
+      requestBody:
+        description: Obtém dados de psicólogos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Psicologo'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Psicologo'
+        '400':
+          description: Input inválido
+        '500':
+          description: Erro ao executar o pedido
+  /psicologo/{psicologoId}:
+    put:
+      tags:
+        - psicologo
+      summary: Fazer update de um psicólogo
+      description: Fazer update dos dados de um psicólogo por ID
+      operationId: updatePsicologo
+      requestBody:
+        description: Fazer update de um psicólogo
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Psicologo'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Psicologo'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Psicologo'
+        '400':
+          description: ID inválido
+        '404':
+          description: Psicólogo não encontrado
+        '422':
+          description: Exceção de validação
+    get:
+      tags:
+        - psicologo
+      summary: Obter psicólogo por ID
+      description: Obtém apenas um psicólogo por ID
+      operationId: getPsicologoById
+      parameters:
+        - name: PsicologoId
+          in: path
+          description: ID do psicólogo a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Psicologo'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Psicologo'
+        '400':
+          description: ID inválido
+        '404':
+          description: Psicólogo não encontrado
+    delete:
+      tags:
+        - psicologo
+      summary: Elimina um psicólogo
+      description: Elimina um psicólogo
+      operationId: deletePsicologo
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: psicologoId
+          in: path
+          description: ID do psicólogo a eliminar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Valor de psicólogo inválido
+  /marcacao:
+    post:
+      tags:
+        - marcacao
+      summary: Adicionar uma marcação
+      description: Adiciona uma marcação no sistema
+      operationId: addMarcacao
+      requestBody:
+        description: Criar uma marcação
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marcacao'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Marcacao'
+        '400':
+          description: Input inválido
+        '201':
+          description: Criado com sucesso
+    get:
+      tags: 
+        - marcacao
+      summary: Obtém dados de marcações
+      description: Obtém dados de todas as marcações
+      operationId: getMarcacoes
+      requestBody:
+        description: Obtém dados de marcações
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marcacao'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Marcacao'
+        '400':
+          description: Input inválido
+        '500':
+          description: Erro ao executar o pedido
+  /marcacao/{marcacaoId}:
+    put:
+      tags:
+        - marcacao
+      summary: Fazer update de uma marcação
+      description: Fazer update dos dados de uma marcação por ID
+      operationId: updateMarcacao
+      requestBody:
+        description: Fazer update de uma marcação
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Marcacao'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marcacao'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Marcacao'
+        '400':
+          description: ID inválido
+        '404':
+          description: Marcação não encontrada
+        '422':
+          description: Exceção de validação
+    get:
+      tags:
+        - marcacao
+      summary: Obter uma marcação por ID
+      description: Obtém apenas uma marcação por ID
+      operationId: getMarcacaoById
+      parameters:
+        - name: marcacaoId
+          in: path
+          description: ID da marcação a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marcacao'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Marcacao'
+        '400':
+          description: ID inválido
+        '404':
+          description: Marcação não encontrado
+    delete:
+      tags:
+        - marcacao
+      summary: Elimina uma marcação
+      description: Elimina uma marcação
+      operationId: deleteMarcacao
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: marcacaoId
+          in: path
+          description: ID da marcação a eliminar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Valor de marcação inválido
+  /cliente:
+    post:
+      tags:
+        - cliente
+      summary: Adicionar um cliente
+      description: Adiciona um cliente no sistema
+      operationId: addCliente
+      requestBody:
+        description: Criar um cliente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: Input inválido
+        '201':
+          description: Criado com sucesso
+    get:
+      tags: 
+        - cliente
+      summary: Obtém dados de clientes
+      description: Obtém dados de todos os clientes
+      operationId: getClientes
+      requestBody:
+        description: Obtém dados de clientes
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: Input inválido
+        '500':
+          description: Erro ao executar o pedido
+  /cliente/{clienteId}:
+    put:
+      tags:
+        - cliente
+      summary: Fazer update de um cliente
+      description: Fazer update dos dados de um cliente por ID
+      operationId: updateCliente
+      requestBody:
+        description: Fazer update de um cliente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: ID inválido
+        '404':
+          description: Cliente não encontrado
+        '422':
+          description: Exceção de validação
+    get:
+      tags:
+        - cliente
+      summary: Obter cliente por ID
+      description: Obtém apenas um cliente por ID
+      operationId: getClienteById
+      parameters:
+        - name: clienteId
+          in: path
+          description: ID do cliente a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: ID inválido
+        '404':
+          description: Cliente não encontrado
+    delete:
+      tags:
+        - cliente
+      summary: Elimina um cliente
+      description: Elimina um cliente
+      operationId: deleteCliente
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: clienteId
+          in: path
+          description: ID do cliente a eliminar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Valor de cliente inválido
+  /agenda:
+    post:
+      tags:
+        - agenda
+      summary: Adicionar valores na agenda
+      description: Adiciona valores na agenda
+      operationId: addAgenda
+      requestBody:
+        description: Criar um cliente na agenda
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agenda'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Agenda'
+        '400':
+          description: Input inválido
+        '201':
+          description: Criado com sucesso
+    get:
+      tags: 
+        - agenda
+      summary: Obtém dados de valores na agenda
+      description: Obtém dados de todos os valores presentes na agenda
+      operationId: getAgendas
+      requestBody:
+        description: Obtém dados de valores presentes na agenda
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agenda'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Agenda'
+        '400':
+          description: Input inválido
+        '500':
+          description: Erro ao executar o pedido
+  /agenda/{agendaId}:
+    put:
+      tags:
+        - agenda
+      summary: Fazer update de um valor na agenda
+      description: Fazer update da agenda por ID
+      operationId: updateAgenda
+      requestBody:
+        description: Fazer update da agenda
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Agenda'
+        required: true
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agenda'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Agenda'
+        '400':
+          description: ID inválido
+        '404':
+          description: Agenda não encontrada
+        '422':
+          description: Exceção de validação
+    get:
+      tags:
+        - agenda
+      summary: Obter agenda por ID
+      description: Obtém apenas uma agenda por ID
+      operationId: getAgendaById
+      parameters:
+        - name: agendaId
+          in: path
+          description: ID da agenda a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sucesso!!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agenda'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Agenda'
+        '400':
+          description: ID inválido
+        '404':
+          description: Agenda não encontrada
+    delete:
+      tags:
+        - agenda
+      summary: Elimina uma agenda
+      description: Elimina uma agenda
+      operationId: deleteAgenda
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: agendaId
+          in: path
+          description: ID da agenda a eliminar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Valor de agenda inválido
+components:
+  schemas:
+    Utilizador:
+      required:
+        - id
+        - nome
+        - email
+        - password
+        - contacto
+        - morada
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Chave primária da entidade utilizador
+          example: 1
+        nome:
+          type: string
+          description: Nome completo do utilizador
+          example: Paulo Santos
+        morada:
+          type: string
+          description: Morada fiscal do utilizador
+          example: Rua A Nº1
+        nif:
+          type: integer
+          description: NIF do utilizador
+          example: 152364786
+        email:
+          type: string
+          description: E-mail do utilizador
+          example: email@email.com
+        data_registo:
+          type: integer
+          description: Data de registo do utilizador
+        data_atualizacao:
+          type: integer
+          description: Data de atualização do utilizador
+        password:
+          type: string
+          description: Password do utilizador
+        contacto:
+          type: integer
+          description: Contacto telefónico do utilizador
+          example: 923461746
+        dta_nascimento:
+          type: integer
+          description: Data de nascimebto do utilizador
+      xml:
+        name: Utilizador
+    Psicologo:
+      required:
+        - id
+        - nome
+        - email
+        - password
+        - contacto
+        - morada
+        - num_celuda
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Chave primária da entidade psicólogo
+          example: 1
+        nome:
+          type: string
+          description: Nome completo do psicólogo
+          example: Ricardo Pereira
+        morada:
+          type: string
+          description: Morada fiscal do psicólogo
+          example: Rua B Nº2
+        nif:
+          type: integer
+          description: NIF do psicólogo
+          example: 746254387
+        email:
+          type: string
+          description: E-mail do psicólogo
+          example: email@email.com
+        data_registo:
+          type: integer
+          description: Data de registo do psicólogo
+        data_atualizacao:
+          type: integer
+          description: Data de atualização do psicólogo
+        password:
+          type: string
+          description: Password do psicólogo
+        contacto:
+          type: integer
+          description: Contacto telefónico do psicólogo
+          example: 913627438
+        dta_nascimento:
+          type: integer
+          description: Data de nascimebto do psicólogo
+        utilizador_id:
+          type: integer
+          description: Chave secundária da entidade psicólogo
+          example: 6
+        num_celuda:
+          type: integer
+          description: Número da Céluda do psicólogo
+          example: 22457
+      xml:
+        name: Psicólogo
+    Marcacao:
+      required:
+        - nome_cliente
+        - tipo_consulta
+        - presencial_online
+        - profissional
+        - horario
+        - id
+        - utilizador_id
+        - psicologo_id
+      type: object
+      properties:
+        nome_cliente:
+          type: string
+          description: Nome do cliente que quer realizar a marcação
+          example: Roberto Mendes
+        tipo_consulta:
+          type: string
+          description: Tipo de consulta pretendida
+          example: EMDR
+        presencial_online:
+          type: string
+          description: Consulta realizada presencialmente ou online
+          example: Presencial
+        profissional:
+          type: string
+          description: Profissional pretendido
+          example: Liliana Marques
+        horario:
+          type: integer
+          description: Horário da consulta
+        id:
+          type: integer
+          description: Id da entidade
+          example: 3
+        utilizador_id:
+          type: integer
+          description: Id do utilizador
+          example: 5
+        psicologo_id:
+          type: string
+          description: Id do psicólogo
+          example: 7
+        data_registo:
+          type: integer
+          description: Data de registo da marcação
+        data_atualizacao:
+          type: integer
+          description: Data de atualização da marcação
+        observacoes:
+          type: string
+          description: Observações que o utilizador queira deixar
+      xml:
+        name: Marcação
+    Cliente:
+      required:
+        - nome
+        - tipo_consulta
+        - formato_consulta
+        - horario
+        - id
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do cliente
+          example: Pedro Pais
+        tipo_consulta:
+          type: string
+          description: Tipo de consulta que o cliente pretende
+          example: Casal
+        formato_consulta:
+          type: string
+          description: Consulta realizada presencialmente ou online
+          example: Online
+        horario:
+          type: integer
+          description: Horário que o cliente pretende
+        notas:
+          type: string
+          description: Notas deixadas pelo psicólogo referentes ao cliente
+        id:
+          type: integer
+          description: Id da entidade cliente
+          example: 2
+        data_registo:
+          type: integer
+          description: Data de registo do cliente
+        data_atualizacao:
+          type: integer
+          description: Data de atualização do cliente
+      xml:
+        name: Cliente
+    Agenda:
+      required:
+        - nome
+        - tipo_consulta
+        - formato_consulta
+        - horario
+        - cliente_id
+        - id
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome referente a um cliente para apontar na agenda
+          example: Mariana Paiva
+        tipo_consulta:
+          type: string
+          description: Tipo de consulta referente a um cliente para apontar na agenda
+          example: Casal
+        formato_consulta:
+          type: string
+          description: Consulta realizada presencialmente ou online
+          example: Presencial
+        horario:
+          type: integer
+          description: Horário referente a um cliente para apontar na agenda
+        cliente_id:
+          type: integer
+          description: Id referente à entidade cliente
+          example: 3
+        id:
+          type: integer
+          description: Id referente à entidade agenda
+          example: 3
+        data_registo:
+          type: integer
+          description: Data de registo
+        data_atualizacao:
+          type: integer
+          description: Data de atualização
+      xml:
+        name: Agenda
