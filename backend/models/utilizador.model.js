@@ -8,6 +8,11 @@ let Utilizador = conexao.define("utilizador",
             primaryKey: true,
             autoIncrement: true
         },
+        psicologo_id: {
+            type: sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         nome: {
             type: sequelize.STRING,
             allowNull: false
