@@ -8,6 +8,11 @@ let Utilizador = conexao.define("utilizador",
             primaryKey: true,
             autoIncrement: true
         },
+        psicologo_id: {
+            type: sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         nome: {
             type: sequelize.STRING,
             allowNull: false
@@ -25,11 +30,11 @@ let Utilizador = conexao.define("utilizador",
             allowNull: true
         },
         data_registo: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         data_atualizacao: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         password: {
@@ -41,7 +46,7 @@ let Utilizador = conexao.define("utilizador",
             allowNull: true
         },
         dta_nascimento: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
     },

@@ -33,11 +33,11 @@ let Marcacao = conexao.define("marcacao",
             allowNull: true
         },
         data_registo: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         data_atualizacao: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         observacoes: {

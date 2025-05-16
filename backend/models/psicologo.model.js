@@ -25,11 +25,11 @@ let Psicologo = conexao.define("psicologo",
             allowNull: true
         },
         data_registo: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         data_atualizacao: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         password: {
@@ -41,7 +41,7 @@ let Psicologo = conexao.define("psicologo",
             allowNull: true
         },
         dta_nascimento: {
-            type: sequelize.INTEGER,
+            type: sequelize.STRING,
             allowNull: true
         },
         utilizador_id: {

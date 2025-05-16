@@ -806,6 +806,10 @@ components:
           type: integer
           description: Chave primária da entidade utilizador
           example: 1
+        psicologo_id:
+          type: integer
+          description: Chave secundária da entidade utilizador
+          example: 1
         nome:
           type: string
           description: Nome completo do utilizador
@@ -823,10 +827,12 @@ components:
           description: E-mail do utilizador
           example: email@email.com
         data_registo:
-          type: integer
+          type: string
+          format: date-time
           description: Data de registo do utilizador
         data_atualizacao:
-          type: integer
+          type: string
+          format: date-time
           description: Data de atualização do utilizador
         password:
           type: string
@@ -836,7 +842,8 @@ components:
           description: Contacto telefónico do utilizador
           example: 923461746
         dta_nascimento:
-          type: integer
+          type: string
+          format: date
           description: Data de nascimebto do utilizador
       xml:
         name: Utilizador
@@ -872,10 +879,12 @@ components:
           description: E-mail do psicólogo
           example: email@email.com
         data_registo:
-          type: integer
+          type: string
+          format: date-time
           description: Data de registo do psicólogo
         data_atualizacao:
-          type: integer
+          type: string
+          format: date-time
           description: Data de atualização do psicólogo
         password:
           type: string
@@ -885,7 +894,8 @@ components:
           description: Contacto telefónico do psicólogo
           example: 913627438
         dta_nascimento:
-          type: integer
+          type: string
+          format: date
           description: Data de nascimebto do psicólogo
         utilizador_id:
           type: integer
@@ -941,10 +951,12 @@ components:
           description: Id do psicólogo
           example: 7
         data_registo:
-          type: integer
+          type: string
+          format: date-time
           description: Data de registo da marcação
         data_atualizacao:
-          type: integer
+          type: string
+          format: date-time
           description: Data de atualização da marcação
         observacoes:
           type: string
@@ -983,10 +995,12 @@ components:
           description: Id da entidade cliente
           example: 2
         data_registo:
-          type: integer
+          type: string
+          format: date-time
           description: Data de registo do cliente
         data_atualizacao:
-          type: integer
+          type: string
+          format: date-time
           description: Data de atualização do cliente
       xml:
         name: Cliente
@@ -1024,10 +1038,12 @@ components:
           description: Id referente à entidade agenda
           example: 3
         data_registo:
-          type: integer
+          type: string
+          format: date-time
           description: Data de registo
         data_atualizacao:
-          type: integer
+          type: string
+          format: date-time
           description: Data de atualização
       xml:
         name: Agenda
