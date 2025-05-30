@@ -8,15 +8,34 @@ const middleware = require("../middleware");
 const marcacaoController = require("../controllers/marcacao.controller");
 
 //endpoints da entidade "marcacao"
-router.post("/marcacao", middleware.checkToken, marcacaoController.createMarcacao);
+router.post(
+  "/marcacao",
+  middleware.checkToken,
+  marcacaoController.createMarcacao
+);
 
-router.get("/marcacoes", middleware.checkToken, marcacaoController.getAllcreateMarcacoes);
+router.get(
+  "/marcacoes",
+  middleware.checkToken,
+  marcacaoController.getAllcreateMarcacoes
+);
 
-router.put("/marcacao/:id", middleware.checkToken, marcacaoController.updatecreateMarcacao);
+router.put(
+  "/marcacao/:id",
+  middleware.checkToken,
+  marcacaoController.updatecreateMarcacao
+);
 
-router.delete("/marcacao/:id", middleware.checkToken, marcacaoController.deletecreateMarcacao);
+router.delete(
+  "/marcacao/:id",
+  middleware.checkToken,
+  marcacaoController.deletecreateMarcacao
+);
 
-router.get("/marcacao/:id", middleware.checkToken, marcacaoController.getcreateMarcacaoById);
-
+router.get(
+  "/marcacao/:id",
+  middleware.checkToken,
+  marcacaoController.getcreateMarcacaoById
+);
 
 module.exports = router;

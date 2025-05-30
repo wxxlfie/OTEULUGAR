@@ -10,13 +10,28 @@ const clienteController = require("../controllers/cliente.controller");
 //endpoints da entidade "cliente"
 router.post("/cliente", middleware.checkToken, clienteController.createCliente);
 
-router.get("/clientes", middleware.checkToken, clienteController.getAllcreateClientes);
+router.get(
+  "/clientes",
+  middleware.checkToken,
+  clienteController.getAllcreateClientes
+);
 
-router.put("/cliente/:id", middleware.checkToken, clienteController.updatecreateCliente);
+router.put(
+  "/cliente/:id",
+  middleware.checkToken,
+  clienteController.updatecreateCliente
+);
 
-router.delete("/cliente/:id", middleware.checkToken, clienteController.deletecreateCliente);
+router.delete(
+  "/cliente/:id",
+  middleware.checkToken,
+  clienteController.deletecreateCliente
+);
 
-router.get("/cliente/:id", middleware.checkToken, clienteController.getcreateClienteById);
-
+router.get(
+  "/cliente/:id",
+  middleware.checkToken,
+  clienteController.getcreateClienteById
+);
 
 module.exports = router;
