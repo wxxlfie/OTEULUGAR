@@ -1,4 +1,4 @@
 node_modules
 node-console.log
 mysql/mysql.sock
-mysql
+/mysql
