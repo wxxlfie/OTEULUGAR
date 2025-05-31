@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
-let Agenda = conexao.define(
+const Agenda = conexao.define(
   "agenda",
   {
     id: {

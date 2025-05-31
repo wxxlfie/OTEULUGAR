@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
-let Utilizador = conexao.define(
+const Utilizador = conexao.define(
   "utilizador",
   {
     id: {
@@ -12,7 +12,6 @@ let Utilizador = conexao.define(
     psicologo_id: {
       type: sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
     },
     nome: {
       type: sequelize.STRING,

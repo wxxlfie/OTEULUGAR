@@ -3,7 +3,7 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123
       MYSQL_DATABASE: oteulugar
@@ -15,7 +15,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
-    restart: unless-stopped
+    restart: always
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306

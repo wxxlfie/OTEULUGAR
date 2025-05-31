@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
-let Psicologo = conexao.define(
+const Psicologo = conexao.define(
   "psicologo",
   {
     id: {

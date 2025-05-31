@@ -1,8 +1,41 @@
 import Navbar from "../components/navbar/index";
 import Footer from "../components/footer/index";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [load, setLoad] = useState(false);
+  const [message, setMessage] = useState("");
+  const [remember, setRemember] = useState(false);
+
+  const nav = useNavigate();
+  const { login, token } = useContext(AuthContext);
+
+  async function HandleLogin(e) {
+    e.preventDefault();
+    setMessage("");
+    setLoad(true);
+
+    try {
+      await login(email, password);
+      // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+      setMessage("Erro ao autenticar o utilizador.");
+      //console.error("Erro ao autenticar o utilizador:", error);
+    } finally {
+      setLoad(false);
+    }
+  }
+
+  useEffect(() => {
+    if (token) {
+      nav("/perfil");
+    }
+  }, [token, nav]);
+
   return (
     <>
       <Navbar />

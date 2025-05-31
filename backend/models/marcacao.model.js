@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
-let Marcacao = conexao.define(
+const Marcacao = conexao.define(
   "marcacao",
   {
     id: {

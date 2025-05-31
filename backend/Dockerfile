@@ -1,6 +1,7 @@
-FROM node
+FROM node:18
 WORKDIR /usr/app
-COPY ./backend/package.json ./
+COPY ./package.json ./
 RUN npm install
-COPY ./backend/ ./
-CMD ["npm", "run", "start"]
+COPY ./ ./
+EXPOSE 5000
+CMD ["npm", "run", "dev"]

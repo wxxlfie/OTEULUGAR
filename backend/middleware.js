@@ -18,7 +18,7 @@ const checkToken = (req, res, next) => {
           message: "Token é inválido",
         });
       } else {
-        req.decoded = decoded;
+        req.decoted = decoted;
         next();
       }
     });
