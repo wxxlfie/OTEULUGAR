@@ -1,6 +1,7 @@
 import NavbarProf from "../components/navbar/index_prof";
 import Footer from "../components/footer/index";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const LoginProf = () => {
   return (

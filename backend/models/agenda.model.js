@@ -22,19 +22,11 @@ const Agenda = conexao.define(
       allowNull: true,
     },
     horario: {
-      type: sequelize.INTEGER,
+      type: sequelize.STRING,
       allowNull: true,
     },
     cliente_id: {
       type: sequelize.INTEGER,
-      allowNull: true,
-    },
-    data_registo: {
-      type: sequelize.STRING,
-      allowNull: true,
-    },
-    data_atualizacao: {
-      type: sequelize.STRING,
       allowNull: true,
     },
   },

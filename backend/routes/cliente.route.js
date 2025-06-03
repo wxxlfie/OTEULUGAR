@@ -13,25 +13,25 @@ router.post("/cliente", middleware.checkToken, clienteController.createCliente);
 router.get(
   "/clientes",
   middleware.checkToken,
-  clienteController.getAllcreateClientes
+  clienteController.getAllClientes
 );
 
 router.put(
   "/cliente/:id",
   middleware.checkToken,
-  clienteController.updatecreateCliente
+  clienteController.updateCliente
 );
 
 router.delete(
   "/cliente/:id",
   middleware.checkToken,
-  clienteController.deletecreateCliente
+  clienteController.deleteCliente
 );
 
 router.get(
   "/cliente/:id",
   middleware.checkToken,
-  clienteController.getcreateClienteById
+  clienteController.getClienteById
 );
 
 module.exports = router;

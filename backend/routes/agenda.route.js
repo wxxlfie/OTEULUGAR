@@ -13,25 +13,25 @@ router.post("/agenda", middleware.checkToken, agendaController.createAgenda);
 router.get(
   "/agendas",
   middleware.checkToken,
-  agendaController.getAllcreateAgendas
+  agendaController.getAllAgendas
 );
 
 router.put(
   "/agenda/:id",
   middleware.checkToken,
-  agendaController.updatecreateAgenda
+  agendaController.updateAgenda
 );
 
 router.delete(
   "/agenda/:id",
   middleware.checkToken,
-  agendaController.deletecreateAgenda
+  agendaController.deleteAgenda
 );
 
 router.get(
   "/agenda/:id",
   middleware.checkToken,
-  agendaController.getcreateAgendaById
+  agendaController.getAgendaById
 );
 
 module.exports = router;

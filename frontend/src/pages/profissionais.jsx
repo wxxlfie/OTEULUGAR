@@ -10,6 +10,7 @@ import Maria from "../Assets/Imagens/Maria.jpg";
 import Pedro from "../Assets/Imagens/Pedro.jpg";
 import Raquel from "../Assets/Imagens/Raquel.jpg";
 import Soraia from "../Assets/Imagens/Soraia.jpg";
+import React from "react";
 
 const Profissionais = () => {
   return (

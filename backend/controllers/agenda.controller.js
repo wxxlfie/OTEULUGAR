@@ -5,24 +5,9 @@ const endpointsFunction = {};
 //Método que cria uma agenda
 
 endpointsFunction.createAgenda = async (req, res) => {
-  const {
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    cliente_id,
-    data_registo,
-    data_atualizacao,
-  } = req.body;
-  console.log(
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    cliente_id,
-    data_registo,
-    data_atualizacao
-  );
+  const { nome, tipo_consulta, formato_consulta, horario, cliente_id } =
+    req.body;
+  console.log(nome, tipo_consulta, formato_consulta, horario, cliente_id);
   try {
     const dados = await Agenda.create({
       nome: nome,
@@ -30,8 +15,6 @@ endpointsFunction.createAgenda = async (req, res) => {
       formato_consulta: formato_consulta,
       horario: horario,
       cliente_id: cliente_id,
-      data_registo: data_registo,
-      data_regdata_atualizacaoisto: data_atualizacao,
     });
 
     res.status(201).json({
@@ -50,7 +33,7 @@ endpointsFunction.createAgenda = async (req, res) => {
 
 //Método que lista todas as agendas
 
-endpointsFunction.getAllAgenda = async (req, res) => {
+endpointsFunction.getAllAgendas = async (req, res) => {
   try {
     const dados = await Agenda.findAll();
 
@@ -72,15 +55,8 @@ endpointsFunction.getAllAgenda = async (req, res) => {
 
 endpointsFunction.updateAgenda = async (req, res) => {
   const { id } = req.params;
-  const {
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    cliente_id,
-    data_registo,
-    data_atualizacao,
-  } = req.body;
+  const { nome, tipo_consulta, formato_consulta, horario, cliente_id } =
+    req.body;
 
   try {
     const dados = await Agenda.update(
@@ -90,8 +66,6 @@ endpointsFunction.updateAgenda = async (req, res) => {
         formato_consulta: formato_consulta,
         horario: horario,
         cliente_id: cliente_id,
-        data_registo: data_registo,
-        data_regdata_atualizacaoisto: data_atualizacao,
       },
       {
         where: { id: id },

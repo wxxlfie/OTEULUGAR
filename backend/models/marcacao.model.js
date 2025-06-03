@@ -18,7 +18,7 @@ const Marcacao = conexao.define(
       allowNull: true,
     },
     presencial_online: {
-      type: sequelize.INTEGER,
+      type: sequelize.STRING,
       allowNull: true,
     },
     profissional: {
@@ -33,15 +33,7 @@ const Marcacao = conexao.define(
       type: sequelize.INTEGER,
       allowNull: true,
     },
-    data_registo: {
-      type: sequelize.STRING,
-      allowNull: true,
-    },
-    data_atualizacao: {
-      type: sequelize.STRING,
-      allowNull: true,
-    },
-    observacoes: {
+    horario: {
       type: sequelize.STRING,
       allowNull: true,
     },

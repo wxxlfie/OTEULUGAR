@@ -17,25 +17,25 @@ router.post(
 router.get(
   "/psicologos",
   middleware.checkToken,
-  psicologoController.getAllcreatePsicologos
+  psicologoController.getAllPsicologos
 );
 
 router.put(
   "/psicologo/:id",
   middleware.checkToken,
-  psicologoController.updatecreatePsicologo
+  psicologoController.updatePsicologo
 );
 
 router.delete(
   "/psicologo/:id",
   middleware.checkToken,
-  psicologoController.deletecreatePsicologo
+  psicologoController.deletePsicologo
 );
 
 router.get(
   "/psicologo/:id",
   middleware.checkToken,
-  psicologoController.getcreatePsicologoById
+  psicologoController.getPsicologoById
 );
 
 module.exports = router;

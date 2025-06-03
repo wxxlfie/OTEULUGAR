@@ -15,8 +15,6 @@ endpointsFunction.createPsicologo = async (req, res) => {
     dta_nascimento,
     utilizador_id,
     num_celuda,
-    data_registo,
-    data_atualizacao,
   } = req.body;
   console.log(
     nome,
@@ -27,9 +25,7 @@ endpointsFunction.createPsicologo = async (req, res) => {
     contacto,
     dta_nascimento,
     utilizador_id,
-    num_celuda,
-    data_registo,
-    data_atualizacao
+    num_celuda
   );
   try {
     const dados = await Psicologo.create({
@@ -42,8 +38,6 @@ endpointsFunction.createPsicologo = async (req, res) => {
       dta_nascimento: dta_nascimento,
       utilizador_id: utilizador_id,
       num_celuda: num_celuda,
-      data_registo: data_registo,
-      data_regdata_atualizacaoisto: data_atualizacao,
     });
 
     res.status(201).json({
@@ -62,7 +56,7 @@ endpointsFunction.createPsicologo = async (req, res) => {
 
 //Método que lista todos os psicólogos
 
-endpointsFunction.getAllPsicologo = async (req, res) => {
+endpointsFunction.getAllPsicologos = async (req, res) => {
   try {
     const dados = await Psicologo.findAll();
 
@@ -94,8 +88,6 @@ endpointsFunction.updatePsicologo = async (req, res) => {
     dta_nascimento,
     utilizador_id,
     num_celuda,
-    data_registo,
-    data_atualizacao,
   } = req.body;
 
   try {
@@ -110,8 +102,6 @@ endpointsFunction.updatePsicologo = async (req, res) => {
         dta_nascimento: dta_nascimento,
         utilizador_id: utilizador_id,
         num_celuda: num_celuda,
-        data_registo: data_registo,
-        data_regdata_atualizacaoisto: data_atualizacao,
       },
       {
         where: { id: id },

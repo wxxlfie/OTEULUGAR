@@ -809,11 +809,7 @@ components:
         psicologo_id:
           type: integer
           description: Chave secundária da entidade utilizador
-<<<<<<< HEAD
           example: 1
-=======
-          example: 2
->>>>>>> 7f5b62e2f51c382b5df45f9104fbce41bf7e0783
         nome:
           type: string
           description: Nome completo do utilizador

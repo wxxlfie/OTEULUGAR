@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "/logo.png";
+import React from "react";
 
 function Navbar() {
   return (
@@ -40,7 +41,7 @@ function Navbar() {
                     Consultas
                   </Link>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <Link class="dropdown-item" to="marcacao_create">
+                    <Link class="dropdown-item" to="/marcacao_create">
                       Criar consultas
                     </Link>
                   </div>

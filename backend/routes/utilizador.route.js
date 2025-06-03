@@ -17,25 +17,25 @@ router.post(
 router.get(
   "/utilizadores",
   middleware.checkToken,
-  utilizadorController.getAllcreateUtilizadores
+  utilizadorController.getAllUtilizadores
 );
 
 router.put(
   "/utilizador/:id",
   middleware.checkToken,
-  utilizadorController.updatecreateUtilizador
+  utilizadorController.updateUtilizador
 );
 
 router.delete(
   "/utilizador/:id",
   middleware.checkToken,
-  utilizadorController.deletecreateUtilizador
+  utilizadorController.deleteUtilizador
 );
 
 router.get(
   "/utilizador/:id",
   middleware.checkToken,
-  utilizadorController.getcreateUtilizadorById
+  utilizadorController.getUtilizadorById
 );
 
 module.exports = router;

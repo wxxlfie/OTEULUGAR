@@ -25,14 +25,6 @@ const Psicologo = conexao.define(
       type: sequelize.STRING,
       allowNull: true,
     },
-    data_registo: {
-      type: sequelize.STRING,
-      allowNull: true,
-    },
-    data_atualizacao: {
-      type: sequelize.STRING,
-      allowNull: true,
-    },
     password: {
       type: sequelize.STRING,
       allowNull: true,

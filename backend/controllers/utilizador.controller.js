@@ -14,8 +14,6 @@ endpointsFunction.createUtilizador = async (req, res) => {
     contacto,
     dta_nascimento,
     psicologo_id,
-    data_registo,
-    data_atualizacao,
   } = req.body;
   console.log(
     nome,
@@ -25,9 +23,7 @@ endpointsFunction.createUtilizador = async (req, res) => {
     password,
     contacto,
     dta_nascimento,
-    psicologo_id,
-    data_registo,
-    data_atualizacao
+    psicologo_id
   );
   try {
     const dados = await Utilizador.create({
@@ -39,8 +35,6 @@ endpointsFunction.createUtilizador = async (req, res) => {
       contacto: contacto,
       dta_nascimento: dta_nascimento,
       psicologo_id: psicologo_id,
-      data_registo: data_registo,
-      data_regdata_atualizacaoisto: data_atualizacao,
     });
 
     res.status(201).json({
@@ -59,7 +53,7 @@ endpointsFunction.createUtilizador = async (req, res) => {
 
 //Método que lista todos os utilizadores
 
-endpointsFunction.getAllUtilizador = async (req, res) => {
+endpointsFunction.getAllUtilizadores = async (req, res) => {
   try {
     const dados = await Utilizador.findAll();
 
@@ -90,8 +84,6 @@ endpointsFunction.updateUtilizador = async (req, res) => {
     contacto,
     dta_nascimento,
     psicologo_id,
-    data_registo,
-    data_atualizacao,
   } = req.body;
 
   try {
@@ -105,8 +97,6 @@ endpointsFunction.updateUtilizador = async (req, res) => {
         contacto: contacto,
         dta_nascimento: dta_nascimento,
         psicologo_id: psicologo_id,
-        data_registo: data_registo,
-        data_regdata_atualizacaoisto: data_atualizacao,
       },
       {
         where: { id: id },

@@ -12,9 +12,7 @@ endpointsFunction.createMarcacao = async (req, res) => {
     profissional,
     utilizador_id,
     psicologo_id,
-    data_registo,
-    data_atualizacao,
-    observacoes,
+    horario,
   } = req.body;
   console.log(
     nome_cliente,
@@ -23,9 +21,7 @@ endpointsFunction.createMarcacao = async (req, res) => {
     profissional,
     utilizador_id,
     psicologo_id,
-    data_registo,
-    data_atualizacao,
-    observacoes
+    horario
   );
   try {
     const dados = await Marcacao.create({
@@ -35,9 +31,7 @@ endpointsFunction.createMarcacao = async (req, res) => {
       profissional: profissional,
       utilizador_id: utilizador_id,
       psicologo_id: psicologo_id,
-      data_registo: data_registo,
-      data_regdata_atualizacaoisto: data_atualizacao,
-      observacoes: observacoes,
+      horario: horario,
     });
 
     res.status(201).json({
@@ -56,7 +50,7 @@ endpointsFunction.createMarcacao = async (req, res) => {
 
 //Método que lista todas as marcações
 
-endpointsFunction.getAllMarcacao = async (req, res) => {
+endpointsFunction.getAllMarcacoes = async (req, res) => {
   try {
     const dados = await Marcacao.findAll();
 
@@ -85,9 +79,7 @@ endpointsFunction.updateMarcacao = async (req, res) => {
     profissional,
     utilizador_id,
     psicologo_id,
-    data_registo,
-    data_atualizacao,
-    observacoes,
+    horario,
   } = req.body;
 
   try {
@@ -99,8 +91,6 @@ endpointsFunction.updateMarcacao = async (req, res) => {
         profissional: profissional,
         utilizador_id: utilizador_id,
         psicologo_id: psicologo_id,
-        data_registo: data_registo,
-        data_regdata_atualizacaoisto: data_atualizacao,
         observacoes: observacoes,
       },
       {

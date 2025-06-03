@@ -2,6 +2,7 @@ import Navbar from "../components/navbar/index";
 import Footer from "../components/footer/index";
 import { Link } from "react-router-dom";
 import imagem6 from "../Assets/Imagens/imagem6.jpg";
+import React from "react";
 
 const Perfil = () => {
   return (

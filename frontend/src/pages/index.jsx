@@ -5,6 +5,7 @@ import imagem1 from "../Assets/Imagens/imagem1.jpg";
 import imagem2 from "../Assets/Imagens/imagem2.jpg";
 import imagem3 from "../Assets/Imagens/imagem3.jpg";
 import imagem4 from "../Assets/Imagens/imagem4.jpg";
+import React from "react";
 
 const HomePage = () => {
   return (

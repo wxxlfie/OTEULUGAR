@@ -1,5 +1,6 @@
 import Navbar from "../components/navbar/index";
 import Footer from "../components/footer/index";
+import React from "react";
 
 const Registar = () => {
   return (

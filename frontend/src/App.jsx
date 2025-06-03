@@ -2,9 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import "./assets/style.css";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/index";
-import Marcacao from "./pages/marcacao";
 import Perfil from "./pages/perfil";
 import Profissionais from "./pages/profissionais";
 import Registar from "./pages/registar";
@@ -22,7 +22,6 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/marcacao" element={<Marcacao />} />
         <Route path="/marcacao_create" element={<MarcacaoCreate />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/profissionais" element={<Profissionais />} />

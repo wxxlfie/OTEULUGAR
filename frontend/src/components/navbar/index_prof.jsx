@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "/logo.png";
+import React from "react";
 
 function NavbarProf() {
   return (

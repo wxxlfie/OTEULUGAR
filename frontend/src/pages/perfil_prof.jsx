@@ -2,6 +2,7 @@ import NavbarProf from "../components/navbar/index_prof";
 import Footer from "../components/footer/index";
 import { Link } from "react-router-dom";
 import imagem5 from "../Assets/Imagens/imagem5.jpg";
+import React from "react";
 
 const PerfilProf = () => {
   return (

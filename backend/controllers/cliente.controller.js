@@ -4,25 +4,9 @@ const endpointsFunction = {};
 
 //Método que cria um cliente
 
-endpointsFunction.createAgenda = async (req, res) => {
-  const {
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    notas,
-    data_registo,
-    data_atualizacao,
-  } = req.body;
-  console.log(
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    notas,
-    data_registo,
-    data_atualizacao
-  );
+endpointsFunction.createCliente = async (req, res) => {
+  const { nome, tipo_consulta, formato_consulta, horario, notas } = req.body;
+  console.log(nome, tipo_consulta, formato_consulta, horario, notas);
   try {
     const dados = await Cliente.create({
       nome: nome,
@@ -30,8 +14,6 @@ endpointsFunction.createAgenda = async (req, res) => {
       formato_consulta: formato_consulta,
       horario: horario,
       notas: notas,
-      data_registo: data_registo,
-      data_regdata_atualizacaoisto: data_atualizacao,
     });
 
     res.status(201).json({
@@ -50,7 +32,7 @@ endpointsFunction.createAgenda = async (req, res) => {
 
 //Método que lista todos os clientes
 
-endpointsFunction.getAllCliente = async (req, res) => {
+endpointsFunction.getAllClientes = async (req, res) => {
   try {
     const dados = await Cliente.findAll();
 
@@ -72,15 +54,7 @@ endpointsFunction.getAllCliente = async (req, res) => {
 
 endpointsFunction.updateCliente = async (req, res) => {
   const { id } = req.params;
-  const {
-    nome,
-    tipo_consulta,
-    formato_consulta,
-    horario,
-    notas,
-    data_registo,
-    data_atualizacao,
-  } = req.body;
+  const { nome, tipo_consulta, formato_consulta, horario, notas } = req.body;
 
   try {
     const dados = await Agenda.update(
@@ -90,8 +64,6 @@ endpointsFunction.updateCliente = async (req, res) => {
         formato_consulta: formato_consulta,
         horario: horario,
         notas: notas,
-        data_registo: data_registo,
-        data_regdata_atualizacaoisto: data_atualizacao,
       },
       {
         where: { id: id },
