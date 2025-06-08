@@ -1,17 +1,10 @@
-import { defineConfig } from 'vite'
-import dns from 'dns'
-
-dns.setDefaultResultOrder('verbatim')
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  plugins: [react()],
   server: {
-    port: 3000,
     host: true,
+    port: 3000,
   },
-  build: {
-    manifest: true,
-    rollupOptions: {
-      input: './frontend-src/main.jsx'
-    }
-  }
-})
+});

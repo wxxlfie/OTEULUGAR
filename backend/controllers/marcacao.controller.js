@@ -91,7 +91,7 @@ endpointsFunction.updateMarcacao = async (req, res) => {
         profissional: profissional,
         utilizador_id: utilizador_id,
         psicologo_id: psicologo_id,
-        observacoes: observacoes,
+        horario: horario,
       },
       {
         where: { id: id },

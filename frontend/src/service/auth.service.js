@@ -4,7 +4,7 @@ class AuthService {
   async login(email, password) {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/login",
+        "http://localhost:5000/api/v1/login",
         {
           email,
           password,
@@ -23,8 +23,7 @@ class AuthService {
   }
 
   async logout() {
-    // Se tiveres endpoint de logout, chama-o aqui
-    // await axios.post("http://localhost:5000/api/v1/logout");
+    await axios.post("http://localhost:5000/api/v1/logout");
   }
 }
 

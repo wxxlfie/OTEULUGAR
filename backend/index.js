@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 sequelize.sync(); //verificar a base de dados da app
 
-app.use("/api/v1", require("./routes/utilizador.route.js"));
-app.use("/api/v1", require("./routes/psicologo.route.js"));
+app.use("/api/v1", require("./routes/auth.route"));
+app.use("/api/v1", require("./routes/auth_prof.route.js"));
 app.use("/api/v1", require("./routes/marcacao.route.js"));
 app.use("/api/v1", require("./routes/cliente.route.js"));
 app.use("/api/v1", require("./routes/agenda.route.js"));

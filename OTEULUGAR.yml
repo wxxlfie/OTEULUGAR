@@ -8,11 +8,13 @@ info:
 servers:
   - url: http://localhost:5000/api/v1
     description: Servidor local
+security:
+  - bearerAuth: []
 tags:
-  - name: utilizador
-    description: Dados referentes aos utilizadores
-  - name: psicologo
+  - name: authprof
     description: Dados referentes os psicólogos
+  - name: auth
+    description: Dados de autenticação
   - name: marcacao
     description: Dados referentes às marcações realizadas pelos utilizadores
   - name: agenda
@@ -20,321 +22,423 @@ tags:
   - name: cliente
     description: Dados referentes aos clientes dos psicólogos
 paths:
-  /utilizador:
+  /registerProf:
     post:
       tags:
-        - utilizador
-      summary: Adicionar um utilizador
-      description: Adiciona um utilizador no sistema
-      operationId: addUtilizador
+        - authprof
+      summary: Registo de um novo psicólogo
+      operationId: registerProf
+      security: []  # Desativa autenticação para este endpoint
       requestBody:
-        description: Criar um utilizador
+        description: Dados do psicólogo
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
+              type: object
+              properties:
+                nome:
+                  type: string
+                  format: string
+                morada:
+                  type: string
+                  format: string
+                password:
+                  type: string
+                  format: string
+                nif:
+                  type: integer
+                  format: integer
+                email:
+                  type: string
+                  format: string
+                contacto:
+                  type: integer
+                  format: integer
+                dta_nascimento:
+                  type: string
+                  format: string  
         required: true
       responses:
         '200':
-          description: Sucesso!!
+          description: Utilizador registado com sucesso
+        '400':
+          description: Dados inválidos
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Utilizador'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Utilizador'
-        '400':
-          description: Input inválido
-        '201':
-          description: Criado com sucesso
-    get:
-      tags: 
-        - utilizador
-      summary: Obtém dados de utilizadores
-      description: Obtém dados de todos os utilizadores
-      operationId: getUtilizadores
-      requestBody:
-        description: Obtém dados de utilizadores
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Utilizador'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Utilizador'
-        '400':
-          description: Input inválido
+                $ref: "#/components/schemas/Error"
         '500':
-          description: Erro ao executar o pedido
-  /utilizador/{utilizadorId}:
-    put:
-      tags:
-        - utilizador
-      summary: Fazer update de um utilizador
-      description: Fazer update dos dados de um utilizador por ID
-      operationId: updateUtilizador
-      requestBody:
-        description: Fazer update de um utilizador
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Utilizador'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
+          description: Erro interno
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Utilizador'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Utilizador'
-        '400':
-          description: ID inválido
-        '404':
-          description: Utilizador não encontrado
-        '422':
-          description: Exceção de validação
-    get:
-      tags:
-        - utilizador
-      summary: Obter utilizador por ID
-      description: Obtém apenas um utilizador por ID
-      operationId: getUtilizadorById
-      parameters:
-        - name: utilizadorId
-          in: path
-          description: ID do utilizador a retornar
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Sucesso!!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Utilizador'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Utilizador'
-        '400':
-          description: ID inválido
-        '404':
-          description: Utilizador não encontrado
-    delete:
-      tags:
-        - utilizador
-      summary: Elimina um utilizador
-      description: Elimina um utilizador
-      operationId: deleteUtilizador
-      parameters:
-        - name: api_key
-          in: header
-          description: ''
-          required: false
-          schema:
-            type: string
-        - name: utilizadorId
-          in: path
-          description: ID do utilizador a eliminar
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '400':
-          description: Valor de utilizador inválido
-  /psicologo:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /loginProf:
     post:
       tags:
-        - psicologo
-      summary: Adicionar um psicólogo
-      description: Adiciona um psicólogo no sistema
-      operationId: addPsicologo
+        - authprof
+      summary: Autenticação do psicólogo
+      operationId: loginProf
+      security: []  # Desativa autenticação para este endpoint
       requestBody:
-        description: Criar um psicólogo
+        description: Dados de autenticação do psicólogo
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-        required: true
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: string
+                password:
+                  type: string
+                  format: string
       responses:
         '200':
-          description: Sucesso!!
+          description: Autenticação com sucesso
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Psicologo'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Psicologo'
+                $ref: '#/components/schemas/AuthProf'
         '400':
-          description: Input inválido
-        '201':
-          description: Criado com sucesso
-    get:
-      tags: 
-        - psicologo
-      summary: Obtém dados de psicólogos
-      description: Obtém dados de todos os psicólogos
-      operationId: getPsicologos
-      requestBody:
-        description: Obtém dados de psicólogos
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
+          description: Dados inválidos
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Psicologo'          
-            application/xml:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
               schema:
-                $ref: '#/components/schemas/Psicologo'
-        '400':
-          description: Input inválido
+                $ref: "#/components/schemas/Error"
         '500':
-          description: Erro ao executar o pedido
-  /psicologo/{psicologoId}:
-    put:
-      tags:
-        - psicologo
-      summary: Fazer update de um psicólogo
-      description: Fazer update dos dados de um psicólogo por ID
-      operationId: updatePsicologo
-      requestBody:
-        description: Fazer update de um psicólogo
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Psicologo'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
+          description: Erro interno
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Psicologo'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Psicologo'
-        '400':
-          description: ID inválido
-        '404':
-          description: Psicólogo não encontrado
-        '422':
-          description: Exceção de validação
-    get:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /refreshTokenProf:
+    post:
       tags:
-        - psicologo
-      summary: Obter psicólogo por ID
-      description: Obtém apenas um psicólogo por ID
-      operationId: getPsicologoById
+        - authprof
+      summary: Reinicia o tempo útil do token
+      operationId: refreshTokenProf
       parameters:
-        - name: PsicologoId
-          in: path
-          description: ID do psicólogo a retornar
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Sucesso!!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Psicologo'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Psicologo'
-        '400':
-          description: ID inválido
-        '404':
-          description: Psicólogo não encontrado
-    delete:
-      tags:
-        - psicologo
-      summary: Elimina um psicólogo
-      description: Elimina um psicólogo
-      operationId: deletePsicologo
-      parameters:
-        - name: api_key
+        - name: token
           in: header
-          description: ''
-          required: false
+          description: refresh token
+          required: true
           schema:
             type: string
-        - name: psicologoId
-          in: path
-          description: ID do psicólogo a eliminar
+            format: string
+      responses:
+        '200':
+          description: Renovação do token realizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AccessToken:
+                    type: string
+                    format: string
+        '404':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /logoutProf:
+    delete:
+      tags:
+        - authprof
+      summary: Logout do psicólogo
+      operationId: logoutProf
+      parameters:
+        - name: token
+          in: header
+          description: token de acesso atual
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+            format: string
       responses:
+        '200':
+          description: Logout realizado com sucesso
         '400':
-          description: Valor de psicólogo inválido
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /register:
+    post:
+      tags:
+        - auth
+      summary: Registo de um novo utilizador
+      operationId: registerUser
+      security: []  # Desativa autenticação para este endpoint
+      requestBody:
+        description: Dados do utilizador
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  format: string
+                morada:
+                  type: string
+                  format: string
+                password:
+                  type: string
+                  format: string
+                nif:
+                  type: integer
+                  format: integer
+                email:
+                  type: string
+                  format: string
+                contacto:
+                  type: integer
+                  format: integer
+                dta_nascimento:
+                  type: string
+                  format: string  
+        required: true
+      responses:
+        '200':
+          description: Utilizador registado com sucesso
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /login:
+    post:
+      tags:
+        - auth
+      summary: Autenticação do utilizador
+      operationId: loginUser
+      security: []  # Desativa autenticação para este endpoint
+      requestBody:
+        description: Dados de autenticação do utilizador
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: string
+                password:
+                  type: string
+                  format: string
+      responses:
+        '200':
+          description: Autenticação com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /refreshToken:
+    post:
+      tags:
+        - auth
+      summary: Reinicia o tempo útil do token
+      operationId: refreshTokenUser
+      parameters:
+        - name: token
+          in: header
+          description: refresh token
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Renovação do token realizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AccessToken:
+                    type: string
+                    format: string
+        '404':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /logout:
+    delete:
+      tags:
+        - auth
+      summary: Logout do utilizador
+      operationId: logoutUser
+      parameters:
+        - name: token
+          in: header
+          description: token de acesso atual
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Logout realizado com sucesso
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
+  /marcacoes:
+    get:
+      tags:
+        - marcacao
+      summary: Retorna todos os estudantes
+      operationId: getAllMarcacoes
+      responses:
+        "200":
+          description: Executado com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Marcacao"
+        "401":
+          description: Não autorizado
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /marcacao:
     post:
       tags:
         - marcacao
       summary: Adicionar uma marcação
       description: Adiciona uma marcação no sistema
-      operationId: addMarcacao
+      operationId: createMarcacao
       requestBody:
         description: Criar uma marcação
         content:
@@ -362,39 +466,6 @@ paths:
           description: Input inválido
         '201':
           description: Criado com sucesso
-    get:
-      tags: 
-        - marcacao
-      summary: Obtém dados de marcações
-      description: Obtém dados de todas as marcações
-      operationId: getMarcacoes
-      requestBody:
-        description: Obtém dados de marcações
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Marcacao'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Marcacao'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Marcacao'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Marcacao'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Marcacao'
-        '400':
-          description: Input inválido
-        '500':
-          description: Erro ao executar o pedido
   /marcacao/{marcacaoId}:
     put:
       tags:
@@ -482,13 +553,39 @@ paths:
       responses:
         '400':
           description: Valor de marcação inválido
+  /clientes:
+    get:
+      tags:
+        - cliente
+      summary: Retorna todos os estudantes
+      operationId: getAllClientes
+      responses:
+        "200":
+          description: Executado com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cliente"
+        "401":
+          description: Não autorizado
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /cliente:
     post:
       tags:
         - cliente
       summary: Adicionar um cliente
       description: Adiciona um cliente no sistema
-      operationId: addCliente
+      operationId: createCliente
       requestBody:
         description: Criar um cliente
         content:
@@ -516,39 +613,6 @@ paths:
           description: Input inválido
         '201':
           description: Criado com sucesso
-    get:
-      tags: 
-        - cliente
-      summary: Obtém dados de clientes
-      description: Obtém dados de todos os clientes
-      operationId: getClientes
-      requestBody:
-        description: Obtém dados de clientes
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Cliente'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Cliente'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Cliente'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cliente'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Cliente'
-        '400':
-          description: Input inválido
-        '500':
-          description: Erro ao executar o pedido
   /cliente/{clienteId}:
     put:
       tags:
@@ -636,13 +700,39 @@ paths:
       responses:
         '400':
           description: Valor de cliente inválido
+  /agendas:
+    get:
+      tags:
+        - agenda
+      summary: Retorna todos os estudantes
+      operationId: getAllAgendas
+      responses:
+        "200":
+          description: Executado com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Agenda"
+        "401":
+          description: Não autorizado
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /agenda:
     post:
       tags:
         - agenda
       summary: Adicionar valores na agenda
       description: Adiciona valores na agenda
-      operationId: addAgenda
+      operationId: createAgenda
       requestBody:
         description: Criar um cliente na agenda
         content:
@@ -670,39 +760,6 @@ paths:
           description: Input inválido
         '201':
           description: Criado com sucesso
-    get:
-      tags: 
-        - agenda
-      summary: Obtém dados de valores na agenda
-      description: Obtém dados de todos os valores presentes na agenda
-      operationId: getAgendas
-      requestBody:
-        description: Obtém dados de valores presentes na agenda
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Agenda'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Agenda'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Agenda'
-        required: true
-      responses:
-        '200':
-          description: Sucesso!!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Agenda'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Agenda'
-        '400':
-          description: Input inválido
-        '500':
-          description: Erro ao executar o pedido
   /agenda/{agendaId}:
     put:
       tags:
@@ -791,122 +848,34 @@ paths:
         '400':
           description: Valor de agenda inválido
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
-    Utilizador:
-      required:
-        - id
-        - nome
-        - email
-        - password
-        - contacto
-        - morada
+    AuthProf:
       type: object
       properties:
-        id:
-          type: integer
-          description: Chave primária da entidade utilizador
-          example: 1
-        psicologo_id:
-          type: integer
-          description: Chave secundária da entidade utilizador
-          example: 1
-        nome:
+        AccessToken:
           type: string
-          description: Nome completo do utilizador
-          example: Paulo Santos
-        morada:
+          description: Token JWT de acesso
+          example: eyJhbGciOiJIUzI1NiIsInR...
+        RefreshToken:
           type: string
-          description: Morada fiscal do utilizador
-          example: Rua A Nº1
-        nif:
-          type: integer
-          description: NIF do utilizador
-          example: 152364786
-        email:
-          type: string
-          description: E-mail do utilizador
-          example: email@email.com
-        data_registo:
-          type: string
-          format: date-time
-          description: Data de registo do utilizador
-        data_atualizacao:
-          type: string
-          format: date-time
-          description: Data de atualização do utilizador
-        password:
-          type: string
-          description: Password do utilizador
-        contacto:
-          type: integer
-          description: Contacto telefónico do utilizador
-          example: 923461746
-        dta_nascimento:
-          type: string
-          format: date
-          description: Data de nascimebto do utilizador
-      xml:
-        name: Utilizador
-    Psicologo:
-      required:
-        - id
-        - nome
-        - email
-        - password
-        - contacto
-        - morada
-        - num_celuda
+          description: Token de atualização para renovar o acesso
+          example: dGhpcyByZWZyZXNoIHRva2Vu
+    Auth:
       type: object
       properties:
-        id:
-          type: integer
-          description: Chave primária da entidade psicólogo
-          example: 1
-        nome:
+        AccessToken:
           type: string
-          description: Nome completo do psicólogo
-          example: Ricardo Pereira
-        morada:
+          description: Token JWT de acesso
+          example: eyJhbGciOiJIUzI1NiIsInR...
+        RefreshToken:
           type: string
-          description: Morada fiscal do psicólogo
-          example: Rua B Nº2
-        nif:
-          type: integer
-          description: NIF do psicólogo
-          example: 746254387
-        email:
-          type: string
-          description: E-mail do psicólogo
-          example: email@email.com
-        data_registo:
-          type: string
-          format: date-time
-          description: Data de registo do psicólogo
-        data_atualizacao:
-          type: string
-          format: date-time
-          description: Data de atualização do psicólogo
-        password:
-          type: string
-          description: Password do psicólogo
-        contacto:
-          type: integer
-          description: Contacto telefónico do psicólogo
-          example: 913627438
-        dta_nascimento:
-          type: string
-          format: date
-          description: Data de nascimebto do psicólogo
-        utilizador_id:
-          type: integer
-          description: Chave secundária da entidade psicólogo
-          example: 6
-        num_celuda:
-          type: integer
-          description: Número da Céluda do psicólogo
-          example: 22457
-      xml:
-        name: Psicólogo
+          description: Token de atualização para renovar o acesso
+          example: dGhpcyByZWZyZXNoIHRva2Vu
     Marcacao:
       required:
         - nome_cliente
@@ -970,6 +939,7 @@ components:
         - formato_consulta
         - horario
         - id
+        - notas
       type: object
       properties:
         nome:
@@ -1047,3 +1017,13 @@ components:
           description: Data de atualização
       xml:
         name: Agenda
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+      example:
+        message: Recurso não encontrado
+        code: 404
